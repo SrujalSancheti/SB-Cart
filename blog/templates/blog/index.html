@@ -1,0 +1,37 @@
+{% extends 'blog/basic.html' %}
+
+{% block title %}  My Blog{% endblock %}
+{% block css %}
+img{
+width: 175px;
+height : 240px;
+}
+{% endblock %}
+
+{% block body %}
+
+ <div class="container mt-3">
+    <div class="row my-2">
+      {% for post in posts%}
+      <div class="col-md-6 cc_cursor">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <h3 class="mb-0">{{post.title}}</h3>
+            <div class="mb-1 text-muted">{{post.pub_date}}</div>
+            <p class="card-text mb-auto">{{post.chead0}}</p>
+            <a href="blogpost/{{post.post_id}}" class="stretched-link cc_pointer">Continue reading</a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <!--<svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect></svg>-->
+            <img src='/media/{{post.thumbnail}}'>
+          </div>
+        </div>
+      </div>
+         {% if forloop.counter|divisibleby:2 %}
+    </div> <div class="row my-2">
+   {% endif %}
+   {% endfor%}
+  </div>
+
+{% endblock %}
+
